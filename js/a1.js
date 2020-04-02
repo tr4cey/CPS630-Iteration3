@@ -25,17 +25,17 @@ $(document).ready(function ()
 
     var navhtml = "";
 
-    navhtml += "<a href='html/a1.html' class='navItem'>Home</a>";
-    navhtml += "<a href='html/about.html' class='navItem'>About Us</a>";
-    navhtml += "<a href='html/about.html' class='navItem'>Contact Us</a>";
-    navhtml += "<a href='html/cart.html' class='navItem'>Shopping Cart</a>";
+    navhtml += "<a href='index.html' class='navItem'>Home</a>";
+    navhtml += "<a href='about.html' class='navItem'>About Us</a>";
+    navhtml += "<a href='about.html' class='navItem'>Contact Us</a>";
+    navhtml += "<a href='cart.html' class='navItem'>Shopping Cart</a>";
     navhtml += "<a class='navItem' id='dbMaintain' style='text-decoration: underline;'>Maintain Database</a>";
 
     $("#navbar").html(navhtml);
 
     $.ajax({
 	type:"POST",
-	url: 'php/attractionPage.php',
+	url: '../php/attractionPage.php',
 	success: function(response)
 	{
 	    $("#attraction-container").html(response);
@@ -101,7 +101,7 @@ $(document).ready(function ()
 	var attractName = $("#attraction").val();
         $.ajax({
             type:"POST",
-            url: 'php/displayAttraction.php',
+            url: '../php/displayAttraction.php',
 	        data: {attractionValue : attractName},
             success: function(response) 
             {
@@ -110,7 +110,7 @@ $(document).ready(function ()
         });
 	$.ajax({
 	    type:"POST",
-	    url: 'php/closeDistance.php',
+	    url: '../php/closeDistance.php',
 	    success: function(response)
 	    {
 		$("#close-distance").html(response);
@@ -122,7 +122,7 @@ $(document).ready(function ()
         var attractName = $("#popular-places").val();
         $.ajax({
             type:"POST",
-            url: 'displayAttraction.php',
+            url: '../php/displayAttraction.php',
             data: {attractionValue : attractName},
             success: function(response)
             {
@@ -131,7 +131,7 @@ $(document).ready(function ()
         });
 	$.ajax({
 	    type:"POST",
-	    url: 'closeDistance.php',
+	    url: '../php/closeDistance.php',
 	    success: function(response)
 	    {
 		$("#close-distance").html(response);
@@ -145,7 +145,7 @@ $(document).ready(function ()
 	
 	$.ajax({
             type:"POST",
-            url: 'php/search.php',
+            url: '../php/search.php',
             data: {searchItem : search},
             success: function(response)
             {
@@ -165,7 +165,7 @@ $(document).ready(function ()
         
         if(inputPwd == password)
         {
-            window.location.href = 'html/dbMaintain.html';
+            window.location.href = 'dbMaintain.html';
         }
         else
         {

@@ -66,7 +66,7 @@ $(document).ready(function ()
         console.log(sqlQuery);
         $.ajax({
             type:"POST",
-            url: 'php/dbMaintain.php',
+            url: '../php/dbMaintain.php',
 	        data: {selection : selection, sqlQuery : sqlQuery, table : table},
             success: function(response) 
             {
