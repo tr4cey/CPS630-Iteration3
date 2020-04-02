@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title>CPS630 - Assignment 1</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="js/a1.js"></script>
+    <link rel="stylesheet" href="css/a1.css">
+	
+<script>
+$(document).ready(function(){
+	var cartContents = [
+		["CNTower","Trip start: Feb 28th", "Trip duration: 3 days", "Cost: $50/day", "Trip id: 123", "Total: $150", "images/cn-tower-map.jpg"],
+		["Banff","Trip start: March 2nd", "Trip duration: 7 days", "Cost: $100/day", "Trip id: 456", "Total: $700","images/Banff_mainmap-map-section-web-758px.jpg"],
+		["Disneyland","Trip start: April 10th", "Trip duration: 4 days", "Cost: $200/day", "Trip id: 789", "Total: $800","images/Map_CA_Disneyland_Disney-566a2f525f9b583dc31d3290.jpg"]
+	];
+		
+		$("select.DSTN").on('change', function() {
+			var selectedDSTN = this.value;
+			var current = cartContents[selectedDSTN];
+			var name = current[0];
+			var start = current[1];
+			var duration = current[2];
+			var fare = current[3];
+			var id = current[4];
+			var total = current[5];
+            		var image = current[6];
+           
+			var htmlString = "<div>"+name+"<//div><ul><li>"+start+"<//li><li>"+duration+"<//li><li>"+fare+"<//li><li>"+id+"<//li><li>"+total+"<//li><//ul><br><img   usemap='#"+selectedDSTN+"'  src="+image+"><//img>";
+			$("ul.cartList").html(htmlString);
+		});
+});
+</script>
+
+
+
+</head>
+<body>
+
+<div class= "navbar" id="navbar"></div>
+
+<h2>Travel plan</h2>
+
+<form align= "right">
+  <label for="numppl">Number of people:</label><br>
+  <input type="text" id="nump" name="nump"><br>
+  <label for="">Ages of travelers:</label><br>
+  <input type="text" id="age" name="age">
+</form>
+
+<select class="DSTN">
+	<option value="-1" selected disabled>Select a destination</option>
+	<option value = "0">CNTower</option>
+    	<option value = "1">Banff</option>
+   	 <option value = "2">Disney land</option>
+</select>
+
+<dialog > 
+<p style="text-align:Left;">Your total is: 'total*13%' </p> 
+<button id="close">Close</button> 
+</dialog> 
+<button style="float:right;" id="show">Total</button> <script>
+var dialog = document.querySelector('dialog'); document.querySelector('#show').onclick = function() { dialog.show(); 
+}; 
+document.querySelector('#close').onclick = function() { dialog.close();
+}; 
+</script>
+<ul class="cartList">
+</ul>
+
+<map name="0">
+  <area shape="circle" coords="327,503,73.5" title="Sky walk" alt="SKYWALKER"  style="cursor:help"help>
+</map>
+
+<map name="1">
+  <area shape="circle" coords="340,286,19" title="Castle" alt="castle" style="cursor:help"help>
+</map>
+
+<map name="2">
+  <area shape="circle" coords="307,336,25" title="Pirate hideout" alt="Pirate hideout" style="cursor:help"help>
+</map>
+
+
+
+
+
+</body>
+
+</html>
