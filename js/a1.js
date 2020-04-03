@@ -30,6 +30,7 @@ $(document).ready(function ()
     navhtml += "<a href='about.html' class='navItem'>Contact Us</a>";
     navhtml += "<a href='cart.html' class='navItem'>Shopping Cart</a>";
     navhtml += "<a class='navItem' id='dbMaintain' style='text-decoration: underline;'>Maintain Database</a>";
+    navhtml += "<a class='navItem' id='login' style='text-decoration: underline;'>Login</a>"
 
     $("#navbar").html(navhtml);
 
@@ -43,6 +44,12 @@ $(document).ready(function ()
     });
 
     $("#dialog").dialog({
+        autoOpen : false, modal : true, show : "blind", hide : "blind"
+    });
+    $("#loginBox").dialog({
+        autoOpen : false, modal : true, show : "blind", hide : "blind"
+    });
+    $("#createAccBox").dialog({
         autoOpen : false, modal : true, show : "blind", hide : "blind"
     });
 
@@ -158,6 +165,16 @@ $(document).ready(function ()
     {
         $("#dialog").dialog("open");
     });
+    $("#login").click(function()
+    {
+        $("#loginBox").dialog("open");
+    });
+    $("#createAcc").click(function()
+    {
+        $("#loginBox").dialog("close");
+        $("#createAccBox").dialog("open");
+    });
+
     $("#passwordBtn").click(function()
     {
         var password = "cps630team10";
@@ -171,5 +188,61 @@ $(document).ready(function ()
         {
             $("#dialog").dialog("close");
         }
+    });
+    $("#loginBtn").click(function() 
+    {
+        var email = $("#loginEmail").val();
+        var password = $("#loginPwd").val();
+
+        $.ajax(
+        {
+            type:"POST",
+            url: '../php/login.php',
+            data: 
+            {
+                email : email,
+                password : password
+            },
+            success: function(response)
+            {
+                if(response == "true")
+                {
+                    $("#loginResponse").html("<p>Login Successful</p>");
+                    $("#loginBox").dialog("close");
+                }
+                else if(response == "false")
+                {
+                    $("#loginResponse").html("<p>Email or Password Incorrect</p>");
+                }
+            }
+         });
+    });
+    $("#createAccBtn").click(function() 
+    {
+        var firstName = $("#createFname").val();
+        var lastName = $("#createFname").val();
+        var email = $("#createEmail").val();
+        var password = $("#createPwd").val();
+        var address = $("#createAddress").val();
+        var phoneNum = $("#createPhone").val();
+
+        $.ajax(
+        {
+            type:"POST",
+            url: '../php/createAccount.php',
+            data: 
+            {
+                firstName : firstName,
+                lastName : lastName,
+                email : email,
+                password : password,
+                address : address,
+                phoneNum : phoneNum
+            },
+            success: function(response)
+            {
+                $("#createAccResponse").html(response);
+            }
+        });
     });
 });
