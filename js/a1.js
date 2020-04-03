@@ -255,4 +255,18 @@ $(document).ready(function ()
             }
         });
     });
+    $(document).on('change', '#attraction-type', function () {
+        var attractSelect = $("#attraction-select").val();
+
+    	$.ajax({
+        	type:"POST",
+        	url: '../php/amValue.php',
+        	data: {attractionValue : attractSelect},
+        	success: function(response)
+        	{
+            		$("#attraction-value").html(attractSelect);
+        	}
+    	});
+
+    });
 });
