@@ -43,6 +43,16 @@ $(document).ready(function ()
 	}
     });
 
+    $.ajax({
+        type:"POST",
+        url: '../php/attractionMaintain.php',
+        success: function(response)
+        {
+            $("#attraction-maintain").html(response);
+        }
+    });
+
+
     $("#dialog").dialog({
         autoOpen : false, modal : true, show : "blind", hide : "blind"
     });
