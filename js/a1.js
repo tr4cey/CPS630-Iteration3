@@ -30,10 +30,49 @@ $(document).ready(function ()
     navhtml += "<a href='about.html' class='navItem'>Contact Us</a>";
     navhtml += "<a href='cart.html' class='navItem'>Shopping Cart</a>";
     navhtml += "<a class='navItem' id='dbMaintain' style='text-decoration: underline;'>Maintain Database</a>";
-    navhtml += "<a class='navItem' id='login' style='text-decoration: underline;'>Login</a>"
 
+    $.ajax(
+    {
+        async: false,
+        type:"POST",
+        url: '../php/checkLogin.php',
+        success: function(response)
+        {
+            if(response == "true")
+            {
+                navhtml += "<a class='navItem' id='myAccount' style='text-decoration: underline;'>My Account</a>";
+                navhtml += "<a class='navItem' id='logout' style='text-decoration: underline;'>Log Out</a>";
+            }
+            else if(response == "false")
+            {
+                navhtml += "<a class='navItem' id='login' style='text-decoration: underline;'>Login</a>";
+            }
+        }
+    });
+    
     $("#navbar").html(navhtml);
-
+    
+    $.ajax(
+    {
+        type:"POST",
+        url: '../php/checkLogin.php',
+        success: function(response)
+        {
+            var navhtmlEnd
+            if(response == "true")
+            {
+                navhtmlEnd += "<a class='navItem' id='login' style='text-decoration: underline;'>Login</a>";
+                navhtmlEnd += "<a class='navItem' id='myAccount' style='text-decoration: underline;'>My Account</a>";
+                navhtmlEnd += "<a class='navItem' id='logout' style='text-decoration: underline;'>Log Out</a>";
+            }
+            else if(response == "false")
+            {
+                navhtmlEnd += "<a class='navItem' id='login' style='text-decoration: underline;'>Login</a>";
+            }
+        }
+    });
+    $("#navbar").html(navhtml);
+    
     $.ajax({
 	type:"POST",
 	url: '../php/attractionPage.php',
@@ -179,6 +218,18 @@ $(document).ready(function ()
     {
         $("#loginBox").dialog("open");
     });
+    $("#logout").click(function()
+    {
+        $.ajax(
+        {
+            type:"POST",
+            url: '../php/logout.php',
+            success: function(response)
+            {
+                location.reload();
+            }
+        });
+    });
     $("#createAcc").click(function()
     {
         $("#loginBox").dialog("close");
@@ -219,6 +270,7 @@ $(document).ready(function ()
                 {
                     $("#loginResponse").html("<p>Login Successful</p>");
                     $("#loginBox").dialog("close");
+                    location.reload();
                 }
                 else if(response == "false")
                 {
@@ -230,7 +282,7 @@ $(document).ready(function ()
     $("#createAccBtn").click(function() 
     {
         var firstName = $("#createFname").val();
-        var lastName = $("#createFname").val();
+        var lastName = $("#createLname").val();
         var email = $("#createEmail").val();
         var password = $("#createPwd").val();
         var address = $("#createAddress").val();
