@@ -21,6 +21,13 @@ create table label(label_id int not null auto_increment, primary key(label_id),
                    label_name varchar(255) not null,
                    label varchar(255));
 
+create table account(email varchar(320) not null unique, 
+					 password char(60) not null, 
+					 first_name varchar(255) not null, 
+                     last_name varchar(255) not null, 
+                     address varchar(255) not null, 
+                     telephone_num varchar(15) not null);
+
 insert into attraction values(1,'Canada','CN Tower');
 insert into attraction values(2,'Canada','Banff National Park');
 insert into attraction values(3,'United States','Disneyland');

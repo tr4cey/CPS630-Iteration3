@@ -21,10 +21,35 @@
         </div>
         <br>
         <h1 class="main-title">Travel Planner</h1>
-    <div id="dialog" title="Database Login">
+    <div id="dialog"title="Database Login">
         <p>Enter the admin Password:</p>
         <input type="password" id="pwd" name="pwd"/>
         <button id="passwordBtn">Search</button>
+    </div>
+    <div id="loginBox" title="Login">
+        <p>Enter email:</p>
+        <input type="email" id="loginEmail" name="loginEmail"/>
+        <p>Enter Password:</p>
+        <input type="password" id="loginPwd" name="loginPwd"/>
+        <a id="createAcc">Create Account</a>
+        <button id="loginBtn">Login</button>
+        <div id="loginResponse" name="loginResponse"></div>
+    </div>
+    <div id="createAccBox" title="Create Account">
+        <p>First Name:</p>
+        <input type="text" id="createFname" name="createFname"/>
+        <p>Last Name:</p>
+        <input type="text" id="createLname" name="createLname"/>
+        <p>Email:</p>
+        <input type="email" id="createEmail" name="createEmail"/>
+        <p>Password:</p>
+        <input type="password" id="createPwd" name="createPwd"/>
+        <p>Address:</p>
+        <input type="text" id="createAddress" name="createAddress"/>
+        <p>Phone #:</p>
+        <input type="tel" id="createPhone" name="createPhone"/>
+        <button id="createAccBtn">Create</button>
+        <div id="createAccResponse" name="createAccResponse"></div>
     </div>
 	<div class="container">
         <div class="leftpanel">
