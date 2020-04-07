@@ -5,6 +5,15 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="../js/a1.js"></script>
 	<link rel="stylesheet" href="../css/a1.css">
+	<script type="text/javascript">
+            function setID (id){
+                jQuery.ajax({
+                            type: "POST",
+                            url: '../php/RemoveID.php',
+                            data: {labelID : id},
+                });
+            }
+        </script>
 </head>
 <body>
 	<div class="navbar" id="navbar"></div>

@@ -255,18 +255,70 @@ $(document).ready(function ()
             }
         });
     });
-    $(document).on('change', '#attraction-type', function () {
+    $(document).on('click', '#adv', function ()
+	{
         var attractSelect = $("#attraction-select").val();
+	var aType = $("#attraction-type").val();
 
     	$.ajax({
         	type:"POST",
         	url: '../php/amValue.php',
-        	data: {attractionValue : attractSelect},
+        	data: {attractionValue : attractSelect,
+			attractionType : aType},
         	success: function(response)
         	{
-            		$("#attraction-value").html(attractSelect);
+            		$("#attraction-value").html(response);
         	}
     	});
+    });
+    $(document).on('click', '#add', function ()
+        {
+        var newVal = $("#inputVal").val();
+	var attractSelect = $("#attraction-select").val();
+        var aType = $("#attraction-type").val();
 
+        $.ajax({
+                type:"POST",
+                url: '../php/amAdder.php',
+                data: {inputVal : newVal,
+			attractionId : attractSelect,
+			attractionType : aType},
+                success: function()
+                {
+        		$.ajax({
+                		type:"POST",
+                		url: '../php/amValue.php',
+                		data: {attractionValue : attractSelect,
+                        	attractionType : aType},
+                		success: function(response)
+                		{
+                        		$("#attraction-value").html(response);
+                		}
+        		});
+                }
+        });
+    });
+    $(document).on('click', '#remove', function ()
+        {
+        var attractSelect = $("#attraction-select").val();
+        var aType = $("#attraction-type").val();
+
+        $.ajax({
+                type:"POST",
+                url: '../php/amRemover.php',
+                success: function()
+                {
+                        $.ajax({
+                                type:"POST",
+                                url: '../php/amValue.php',
+                                data: {attractionValue : attractSelect,
+                                attractionType : aType},
+                                success: function(response)
+                                {
+                                        $("#attraction-value").html(response);
+                                }
+                        });
+                }
+        });
     });
 });
