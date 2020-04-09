@@ -40,8 +40,9 @@ $(document).ready(function ()
         {
             if(response == "true")
             {
-                navhtml += "<a class='navItem' id='myAccount' style='text-decoration: underline;'>My Account</a>";
+                navhtml += "<a class='navItem' href='account.html'>My Account</a>";
                 navhtml += "<a class='navItem' id='logout' style='text-decoration: underline;'>Log Out</a>";
+                console.log("working");
             }
             else if(response == "false")
             {
