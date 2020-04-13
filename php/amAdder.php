@@ -12,8 +12,12 @@
     $id = $_POST['attractionId'];
     $aType = $_POST['attractionType'];
 
-    $sqlImage = "insert into label (attraction_id, label_name, label) values (".$id.", '".$aType."', '".$val."')";
-
+    if($aType == "Image"){
+	$sqlImage = "insert into image (attraction_id, url, type) values (".$id.", '".$val."', 'alt')";
+    }
+    else{
+    	$sqlImage = "insert into label (attraction_id, label_name, label) values (".$id.", '".$aType."', '".$val."')";
+    }
     mysqli_query($conn, $sqlImage);
 
     mysqli_close($conn);

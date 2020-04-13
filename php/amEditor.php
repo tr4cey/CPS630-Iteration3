@@ -9,13 +9,17 @@
 	die('Could not connect to instance: ' . mysqli_error($conn));
     }
     $id = $_POST['labelID'];
-    $aType = $_POST['attractionType'];
+    $new = $_POST['newVal'];
+    $type = $_POST['aType'];
 
-    if($aType=="Image"){
-	$sqlImage = "delete from image where image_id=".$id;
+    if($type == 'label'){
+    	$sqlImage = "update label set label='".$new."' where label_id=".$id;
     }
-    else{
-    	$sqlImage = "delete from label where label_id=".$id;
+    if($type == 'name'){
+	$sqlImage = "update attraction set attraction_name='".$new."' where attraction_id=".$id;
+    }
+    if($type == 'image'){
+	$sqlImage = "update image set url='".$new."' where image_id=".$id;
     }
 
     mysqli_query($conn, $sqlImage);

@@ -28,7 +28,7 @@
     	echo "  <select id='attraction-type'>
 	<option value='' selected disabled hidden>Select an attribute...</option>
         <option value='Name'>Name</option>
-        <option value='Image' disabled>Image</option>
+        <option value='Image'>Image</option>
 	<option value='Address'>Address</option>
 	<option value='Description'>Description</option>
 	<option value='Distance'>Distance</option>

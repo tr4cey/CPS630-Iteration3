@@ -14,6 +14,9 @@
     if($aType=="Name"){
    	$sqlImage = "select * from attraction where attraction_id=".$attraction;
     }
+    else if($aType=="Image"){
+	$sqlImage = "select * from image where attraction_id=".$attraction;
+    }
     else{
 	$sqlImage = "select * from label where attraction_id=".$attraction." and label_name='".$aType."'";
     }
@@ -22,20 +25,27 @@
 
     if (mysqli_num_rows($imageResult) > 0)
     {
+	    echo "<br><input type='text' id='newValue' placeholder='Updated value...'></input>";
 	while($row = mysqli_fetch_assoc($imageResult))
 	{
 	    if($aType=="Name"){
-		echo "<br>".$row['attraction_name']." <button id='edit'>Edit</button>";
+		echo "<br>Current Value: ".$row['attraction_name']." <button onclick=\"editID(".$row['attraction_id'].", 'name')\">Update</button>";
+	    }
+	    else if($aType=="Image"){
+		    echo "<br><img src='".$row['url']."' width=300px><br>Current Value: ".$row['url']." <button onclick=\"editID(".$row['image_id'].", 'image')\">Update</button>  <button onclick='setID(".$row['image_id'].")'>Remove</button>";
+		    if($row['type'] == "home"){
+			    echo "<span>  (MAIN)</span>";
+		    }
 	    }
 	    else{
-	    	echo "<br>".$row['label']." <button id='edit'>Edit</button>  <button id='remove' onclick='setID(".$row['label_id'].")'>Remove</button>";
+	    	echo "<br>Current Value: ".$row['label']." <button onclick=\"editID(".$row['label_id'].", 'label')\">Update</button>  <button onclick='setID(".$row['label_id'].")'>Remove</button>";
 	    }    
 	}
     }
     else { echo "<br>No results found."; }
 
 	if($aType!="Name"){
-		echo "<br><input type='text' id='inputVal' placeholder='Add a new value...'>  <button id='add'>Add</button>".$_SESSION['labelID'];
+		echo "<br><input type='text' id='inputVal' placeholder='Add a new value...'>  <button id='add'>Add</button>";
 	}
 
     mysqli_close($conn);

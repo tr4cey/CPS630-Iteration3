@@ -298,27 +298,4 @@ $(document).ready(function ()
                 }
         });
     });
-    $(document).on('click', '#remove', function ()
-        {
-        var attractSelect = $("#attraction-select").val();
-        var aType = $("#attraction-type").val();
-
-        $.ajax({
-                type:"POST",
-                url: '../php/amRemover.php',
-                success: function()
-                {
-                        $.ajax({
-                                type:"POST",
-                                url: '../php/amValue.php',
-                                data: {attractionValue : attractSelect,
-                                attractionType : aType},
-                                success: function(response)
-                                {
-                                        $("#attraction-value").html(response);
-                                }
-                        });
-                }
-        });
-    });
 });
