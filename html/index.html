@@ -1,97 +1,18 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>CPS630 - Assignment 1</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular-route.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <link href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
-	<script src="../js/a1.js"></script>
-	<script type="text/javascript">
-	    function setID (id){
-		jQuery.ajax({
-			    type: "POST",
-			    url: '../php/setID.php',
-			    data: {attrID : id},
-		});
-	    }
-	</script>
         <link rel="stylesheet" href="../css/a1.css">
     </head>
-    <body>
-        <div class="navbar" id="navbar">
+    <body ng-app="myApp" ng-controller="myCtrl">
+        <div id="navbar" class="navbar">
         </div>
-        <br>
-        <h1 class="main-title">Travel Planner</h1>
-    <div id="dialog"title="Database Login">
-        <p>Enter the admin Password:</p>
-        <input type="password" id="pwd" name="pwd"/>
-        <button id="passwordBtn">Search</button>
-    </div>
-    <div id="loginBox" title="Login">
-        <p>Enter email:</p>
-        <input type="email" id="loginEmail" name="loginEmail"/>
-        <p>Enter Password:</p>
-        <input type="password" id="loginPwd" name="loginPwd"/>
-        <a id="createAcc">Create Account</a>
-        <button id="loginBtn">Login</button>
-        <div id="loginResponse" name="loginResponse"></div>
-    </div>
-    <div id="createAccBox" title="Create Account">
-        <p>First Name:</p>
-        <input type="text" id="createFname" name="createFname"/>
-        <p>Last Name:</p>
-        <input type="text" id="createLname" name="createLname"/>
-        <p>Email:</p>
-        <input type="email" id="createEmail" name="createEmail"/>
-        <p>Password:</p>
-        <input type="password" id="createPwd" name="createPwd"/>
-        <p>Address:</p>
-        <input type="text" id="createAddress" name="createAddress"/>
-        <p>Phone #:</p>
-        <input type="tel" id="createPhone" name="createPhone"/>
-        <button id="createAccBtn">Create</button>
-        <div id="createAccResponse" name="createAccResponse"></div>
-    </div>
-	<div class="container">
-        <div class="leftpanel">
-            <span>Continent: </span>
-            <select name="continent" id="continent">
-                <option value="none" selected disabled hidden>
-                    Select an Option
-                </option>
-                <option value="na">North America</option>
-                <option value="eu">Europe</option>
-                <option value="sa">South America</option>
-                <option value="afr">Africa</option>
-                <option value="asia">Asia</option>
-            </select>
-            <div class="countryDiv" id="countryDiv">
-            </div>
-            <div class="attractionsDiv" id="attractionsDiv">
-            </div>
-            <br>
-            <span>Popular Places: </span>
-            <select name="popular-places" id="popular-places">
-                <option value="none" selected disabled hidden>
-                    Select an Option
-                </option>
-                <option value="cn tower">CN Tower</option>
-                <option value="disneyland">Disneyland</option>
-                <option value="taj mahal">Taj Mahal</option>
-                <option value="giza necropolis">Giza Necropolis</option>
-                <option value="christ the redeemer">Christ the Redeemer</option>
-            </select>
-        </div>
-	<div class="main-attraction" id="main-attraction">
-	    Welcome to the travel planner! Please select an attraction.
-	</div>
-        <div id="rightPanel">
-            <input type="text" id="search">
-            <button id="searchBtn">Search</button>
-            <div id="searchResults"></div>
-        </div>
-        <br><br>
-	</div>
-	<div class="close-distance-container" id="close-distance">
-        </div>
+        <div ng-view></div>
+        <script src="../js/a1.js"></script>
     </body>
 </html>

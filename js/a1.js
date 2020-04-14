@@ -1,5 +1,41 @@
+var app = angular.module("myApp", ['ngRoute']);
+app.config(function($routeProvider){
+    $routeProvider
+    .when("/", {
+        templateUrl:"home.htm",
+        controller:"myCtrl"
+    })
+    .when("/about", {
+        templateUrl:"about.htm",
+        controller:"myCtrl"
+    })
+    .when("/contact", 
+    {
+        templateUrl:"about.htm",
+        controller:"myCtrl"
+    })
+    .when("/cart", 
+    {
+        templateUrl:"cart.htm",
+        controller:"myCtrl"
+    })
+    .when("/dbMaintain", 
+    {
+        templateUrl:"dbMaintain.htm",
+        controller:"myCtrl"
+    })
+    .when("/account", 
+    {
+        templateUrl:"account.htm",
+        controller:"myCtrl"
+    });
+});
+
+app.controller('myCtrl', function($scope) {
+    
 $(document).ready(function () 
 {
+
     let na = ['Canada', 'United States'];
     let eu = ['Russia', 'Germany'];
     let sa = ['Brazil', 'Argentina'];
@@ -25,10 +61,10 @@ $(document).ready(function ()
 
     var navhtml = "";
 
-    navhtml += "<a href='index.html' class='navItem'>Home</a>";
-    navhtml += "<a href='about.html' class='navItem'>About Us</a>";
-    navhtml += "<a href='about.html' class='navItem'>Contact Us</a>";
-    navhtml += "<a href='cart.html' class='navItem'>Shopping Cart</a>";
+    navhtml += "<a href='#/!' class='navItem'>Home</a>";
+    navhtml += "<a href='#!about' class='navItem'>About Us</a>";
+    navhtml += "<a href='#!about' class='navItem'>Contact Us</a>";
+    navhtml += "<a href='#!cart' class='navItem'>Shopping Cart</a>";
     navhtml += "<a class='navItem' id='dbMaintain' style='text-decoration: underline;'>Maintain Database</a>";
 
     $.ajax(
@@ -40,9 +76,8 @@ $(document).ready(function ()
         {
             if(response == "true")
             {
-                navhtml += "<a class='navItem' href='account.html'>My Account</a>";
+                navhtml += "<a class='navItem' href='#!account'>My Account</a>";
                 navhtml += "<a class='navItem' id='logout' style='text-decoration: underline;'>Log Out</a>";
-                console.log("working");
             }
             else if(response == "false")
             {
@@ -51,7 +86,7 @@ $(document).ready(function ()
         }
     });
     
-    $("#navbar").html(navhtml);
+    $("#navbar").html(navhtml); 
     
     $.ajax(
     {
@@ -244,7 +279,7 @@ $(document).ready(function ()
         
         if(inputPwd == password)
         {
-            window.location.href = 'dbMaintain.html';
+            window.location.href = '#!dbMaintain';
         }
         else
         {
@@ -308,4 +343,79 @@ $(document).ready(function ()
             }
         });
     });
+    $("#sqlSelection").change(function ()
+    {
+        let html = "";
+        var selection = $(this).val();
+
+        if(selection == "insert")
+        {
+            html += "INSERT INTO <input type='text' id='table' placeholder='table'> (<input type='text' id='columns' placeholder='columns'>) VALUES (<input type='text' id='values' placeholder='values'>);";
+        }
+        else if(selection == "delete")
+        {
+            html += "DELETE FROM <input type='text' id='table' placeholder='table'> WHERE <input type='text' id='conditions' placeholder='conditions'>;";
+        }
+        else if(selection == "select")
+        {
+            html += "SELECT * FROM <input type='text' id='table' placeholder='table'> WHERE <input type='text' id='conditions' placeholder='conditions'>;";
+        }
+        else if(selection == "update")
+        {
+            html+="UPDATE <input type='text' id='table' placeholder='table'> SET <input type='text' id='columns' placeholder='columns'> WHERE <input type='text' id='conditions' placeholder='conditions'>;";
+        }
+        html+="<br><button id='submitQuery'>Submit Query</button>"; 
+
+        $("#selectResults").html(html);
+    });
+
+    $(document).on('click', '#submitQuery',function()
+    {
+        var selection = $("#sqlSelection").val();
+        var sqlQuery = "";
+        var table = "";
+
+        if(selection == "insert")
+        {
+            table = $("#table").val();
+            var columns = $("#columns").val();
+            var values = $("#values").val();
+
+            sqlQuery = "insert into " + table + " (" + columns + ") values (" + values + ");";
+            
+        }
+        else if(selection == "delete")
+        {
+            table = $("#table").val();
+            var conditions = $("#conditions").val();
+            
+            sqlQuery = "delete from " + table + " where " + conditions + ";";
+        }
+        else if(selection == "select")
+        {
+            table = $("#table").val();
+            var conditions = $("#conditions").val();
+            
+            sqlQuery = "select * from " + table + " where " + conditions + ";";
+        }
+        else if(selection == "update")
+        {
+            table = $("#table").val();
+            var conditions = $("#conditions").val();
+            var columns = $("#columns").val();
+            
+            sqlQuery = "update " + table + " set " + columns + " where " + conditions + ";";
+        }
+        console.log(sqlQuery);
+        $.ajax({
+            type:"POST",
+            url: '../php/dbMaintain.php',
+	        data: {selection : selection, sqlQuery : sqlQuery, table : table},
+            success: function(response) 
+            {
+                $("#results").html(response);
+            }
+        });
+    });
+});
 });
