@@ -20,7 +20,7 @@
 	    {
 	    echo "<h2 style='display:inline'>".$row['attraction_name'].", </h2><div style='display:inline'> ".$row['city'].", ".$row['country']."</div><br>";
 	    $attractionId = $row['attraction_id'];
-	    echo "<a href='attraction.html'>Read More</a><br><br>";
+	    echo "<a href='#!attraction'>Read More</a><br><br>";
 	    }
     }
     else { echo "No Results Found"; }

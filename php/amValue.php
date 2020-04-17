@@ -32,13 +32,13 @@
 		echo "<br>Current Value: ".$row['attraction_name']." <button onclick=\"editID(".$row['attraction_id'].", 'name')\">Update</button>";
 	    }
 	    else if($aType=="Image"){
-		    echo "<br><img src='".$row['url']."' width=300px><br>Current Value: ".$row['url']." <button onclick=\"editID(".$row['image_id'].", 'image')\">Update</button>  <button onclick='setID(".$row['image_id'].")'>Remove</button>";
+		    echo "<br><img src='".$row['url']."' width=300px><br>Current Value: ".$row['url']." <button onclick=\"editID(".$row['image_id'].", 'image')\">Update</button>  <button onclick='removeID(".$row['image_id'].")'>Remove</button>";
 		    if($row['type'] == "home"){
 			    echo "<span>  (MAIN)</span>";
 		    }
 	    }
 	    else{
-	    	echo "<br>Current Value: ".$row['label']." <button onclick=\"editID(".$row['label_id'].", 'label')\">Update</button>  <button onclick='setID(".$row['label_id'].")'>Remove</button>";
+	    	echo "<br>Current Value: ".$row['label']." <button onclick=\"editID(".$row['label_id'].", 'label')\">Update</button>  <button onclick='removeID(".$row['label_id'].")'>Remove</button>";
 	    }    
 	}
     }

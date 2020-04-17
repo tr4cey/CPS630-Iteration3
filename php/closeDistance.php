@@ -62,7 +62,7 @@
 		}
 
                 echo "<br><h3 style='display:inline'>".$row['attraction_name'].",</h3><div style='display:inline'> ".$row['city'].", ".$row['country']."</div><br>
-                <a href='attraction.html' onclick='setID(".$row['attraction_id'].")'>Read More</a>
+                <a href='#!attraction' onclick='setID(".$row['attraction_id'].")'>Read More</a>
 		</div>";
 	    }
 	}

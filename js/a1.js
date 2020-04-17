@@ -466,7 +466,8 @@ $(document).ready(function ()
                 }
         });
     });
-function setID (id){
+});
+function removeID (id){
                 var attractSelect = $("#attraction-select").val();
 var aType = $("#attraction-type").val();
         jQuery.ajax({
@@ -514,4 +515,3 @@ var aType = $("#attraction-type").val();
         }
         });
 }
-});
