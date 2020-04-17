@@ -466,4 +466,52 @@ $(document).ready(function ()
                 }
         });
     });
+function setID (id){
+                var attractSelect = $("#attraction-select").val();
+var aType = $("#attraction-type").val();
+        jQuery.ajax({
+                type: "POST",
+                url: '../php/amRemover.php',
+                data: {labelID : id,
+                        attractionType : aType},
+                success: function(response)
+        {
+                $.ajax({
+                        type:"POST",
+                        url: '../php/amValue.php',
+                        data: {attractionValue : attractSelect,
+                        attractionType : aType},
+                        success: function(response)
+                        {
+                                $("#attraction-value").html(response);
+                        }
+                });
+        }
+        });
+}
+function editID (id, type){
+                var attractSelect = $("#attraction-select").val();
+var aType = $("#attraction-type").val();
+        var val = $("#newValue").val();
+        jQuery.ajax({
+                type: "POST",
+                url: '../php/amEditor.php',
+                data: {labelID : id,
+                        newVal : val,
+                        aType : type},
+                success: function(response)
+        {
+                $.ajax({
+                        type:"POST",
+                        url: '../php/amValue.php',
+                        data: {attractionValue : attractSelect,
+                        attractionType : aType},
+                        success: function(response)
+                        {
+                                $("#attraction-value").html(response);
+                        }
+                });
+        }
+        });
+}
 });
