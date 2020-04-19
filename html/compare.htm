@@ -1,0 +1,19 @@
+<!-- 
+    search.php
+    home.htm - find search div
+    JS code:
+    $("#searchBtn").click(function()
+    {
+        var search = $("#search").val();
+	
+	$.ajax({
+            type:"POST",
+            url: '../php/search.php',
+            data: {searchItem : search},
+            success: function(response)
+            {
+                $("#searchResults").html(response);
+            }
+        });
+    });
+ -->
