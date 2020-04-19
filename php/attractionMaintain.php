@@ -35,9 +35,6 @@
 	<option value='Area'>Area</option>
 	<option value='Price'>Price</option>
 	<option value='Invoices'>Invoices</option>
-	<option value='User-accounts' disabled>User Accounts</option>
-	<option value='User-feedback' disabled>User Feedback</option>
-	<option value='User-rankings' disabled>User Rankings</option>
 	<option value='Coordinates'>Coordinates</option>
 	<option value='Owner'>Owner</option>
 	<option value='Other'>Other...</option>

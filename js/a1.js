@@ -39,6 +39,11 @@ app.config(function($routeProvider){
         templateUrl:"attractionMaintain.htm",
         controller:"myCtrl"
     })
+    .when("/attraction",
+    {
+	    templateUrl:"attraction.htm",
+	    controller:"myCtrl"
+    })
     .otherwise(
     {
         redirectTo: '/'
@@ -481,7 +486,7 @@ $(document).ready(function ()
     
 });
 function setID (id) {
-	$.ajax({
+	jQuery.ajax({
 		type:"POST",
 		url: '../php/setID.php',
 		data: {attrID : id}

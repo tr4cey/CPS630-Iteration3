@@ -24,7 +24,7 @@
             echo "<tr>";
             echo '<td>'.$row['country'].'</td>';
             echo '<td>'.$row['city'].'</td>';
-	        echo '<td>'.$row['attraction_name'].'</td>';
+	        echo "<td><a href='#!attraction' onclick='setID(".$row['attraction_id'].")'>".$row['attraction_name']."</a></td>";
 	        echo "</tr>";
         }
         echo "</table>";
