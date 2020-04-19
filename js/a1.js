@@ -470,6 +470,13 @@ $(document).ready(function ()
     });
     
 });
+function setID (id) {
+	$.ajax({
+		type:"POST",
+		url: '../php/setID.php',
+		data: {attrID : id}
+	});
+}
 function removeID (id){
                 var attractSelect = $("#attraction-select").val();
 var aType = $("#attraction-type").val();
