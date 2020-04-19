@@ -1,4 +1,4 @@
-var app = angular.module("myApp", ['ngRoute']);
+var app = angular.module("myApp", ['ngRoute', 'ngMap']);
 app.config(function($routeProvider){
     $routeProvider
     .when("/", {
@@ -41,8 +41,12 @@ app.config(function($routeProvider){
     })
     .when("/attraction",
     {
-	templateUrl:"attraction.htm",
-	controller:"myCtrl"
+	    templateUrl:"attraction.htm",
+	    controller:"myCtrl"
+    })
+    .otherwise(
+    {
+        redirectTo: '/'
     });
 });
 
@@ -80,7 +84,7 @@ $(document).ready(function ()
     navhtml += "<a href='#!about' class='navItem'>About Us</a>";
     navhtml += "<a href='#!about' class='navItem'>Contact Us</a>";
     navhtml += "<a href='#!cart' class='navItem'>Shopping Cart</a>";
-    navhtml += "<a href='#!compare' class='navItem'>Compare</a>";
+    navhtml += "<a href='#!compare' class='navItem' id='compare'>Compare</a>";
     navhtml += "<a class='navItem' id='dbMaintain' style='text-decoration: underline;'>Maintain Database</a>";
 
     $.ajax(
@@ -359,6 +363,7 @@ $(document).ready(function ()
             }
         });
     });
+
     $("#sqlSelection").change(function ()
     {
         let html = "";
@@ -450,7 +455,6 @@ $(document).ready(function ()
         	}
     	});
     });
-	
     $(document).on('click', '#add', function ()
         {
         var newVal = $("#inputVal").val();

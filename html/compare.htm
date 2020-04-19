@@ -17,3 +17,27 @@
         });
     });
  -->
+
+<br>
+<div ng-controller="compareCtrl as vm" class="compare-container">
+    <div id="searchBox">
+        <input type="text" id="search">
+        <button id="searchBtn2">Search</button>
+        <div id="searchResults2"></div>
+        <button id="compareBtn">Compare Selections</button>
+        <div id="compareLeft"></div>
+        <div id="compareRight"></div>
+    </div>
+    <ng-map zoom="10">
+        <directions
+          draggable="true"
+          travel-mode="DRIVING"
+          waypoint =""
+          origin={{vm.origin}}
+          destination={{vm.destination}}>
+        </directions>
+    </ng-map>
+    <div>Origin - {{vm.origin}}</div>
+    <div>Destination - {{vm.destination}}</div>
+</div>
+
