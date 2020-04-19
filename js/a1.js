@@ -439,6 +439,7 @@ $(document).ready(function ()
         	}
     	});
     });
+	
     $(document).on('click', '#add', function ()
         {
         var newVal = $("#inputVal").val();
@@ -465,7 +466,9 @@ $(document).ready(function ()
         		});
                 }
         });
+		(this).unbind('click');
     });
+    
 });
 function removeID (id){
                 var attractSelect = $("#attraction-select").val();
