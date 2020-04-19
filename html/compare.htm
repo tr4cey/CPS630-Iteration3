@@ -19,20 +19,25 @@
  -->
 
 <br>
-<div ng-controller="compareCtrl" class="compare-container">
+<div ng-controller="compareCtrl as vm" class="compare-container">
     <div id="searchBox">
         <input type="text" id="search">
-        <button id="searchBtn">Search</button>
-        <div id="searchResults"></div>
+        <button id="searchBtn2">Search</button>
+        <div id="searchResults2"></div>
+        <button id="compareBtn">Compare Selections</button>
+        <div id="compareLeft"></div>
+        <div id="compareRight"></div>
     </div>
-    <!-- <ng-map zoom="10">
+    <ng-map zoom="10">
         <directions
           draggable="true"
           travel-mode="DRIVING"
           waypoint =""
-          origin="290 Bremner Blvd, Toronto, ON M5V 3L9"
-          destination="Orlando, FL, United States">
+          origin={{vm.origin}}
+          destination={{vm.destination}}>
         </directions>
-    </ng-map> -->
+    </ng-map>
+    <div>Origin - {{vm.origin}}</div>
+    <div>Destination - {{vm.destination}}</div>
 </div>
 

@@ -22,7 +22,7 @@
         while($row = mysqli_fetch_assoc($qResult))
 	    {
             echo "<tr>";
-            echo '<td><input class=\'limit\' type=\'checkbox\' value=\''.$row['attraction_name'].'\'></td>';
+            echo '<td><input class=\'single-checkbox\' type=\'checkbox\' value=\''.$row['attraction_name'].'\'></td>';
             echo '<td>'.$row['country'].'</td>';
             echo '<td>'.$row['city'].'</td>';
 	        echo '<td>'.$row['attraction_name'].'</td>';
