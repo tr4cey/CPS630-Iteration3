@@ -7,6 +7,9 @@ To run the code on your own set up a webserver to host
 the application, then navigate to "/CPS630-Iteration3/html/" 
 to reach the home page.
 
+** Please note: The CN Tower, Disneyland, Banff, and the Grand Canyon have full attraction
+pages, while the others might be missing some information
+
 Viewing specific functions of the assignment:
 
 Login -> "Login" on the navigation bar, will open a log in window

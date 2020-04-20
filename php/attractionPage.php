@@ -64,15 +64,14 @@
 
     if (mysqli_num_rows($reviewResult) > 0)
     {
-	while($row = mysqli_fetch_assoc($reviewResult))
-	{
-	    echo "<div class='review'>
-	    <div class='review-header'>
-            <div>".$row['first_name']." ".$row['last_name']."</div><div>(".$row['time_posted'].")</div></div>
-            <p>".$row['review']."</p>
-	    <p>".$row['rating']." "//10"</p>
-            </div>";
-	}
+        while($row = mysqli_fetch_assoc($reviewResult))
+        {
+            echo "<div class='review'>
+            <div class='review-header'>
+                <div>".$row['first_name']." ".$row['last_name']."</div><div>(".$row['time_posted'].")</div></div>
+                <p>".$row['review']."</p>
+            <p>".$row['rating']."</p></div>";
+        }
     }
     else { echo "No Results Found."; }
     mysqli_close($conn);
