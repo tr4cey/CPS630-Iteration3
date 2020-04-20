@@ -70,6 +70,7 @@
 	    <div class='review-header'>
             <div>".$row['first_name']." ".$row['last_name']."</div><div>(".$row['time_posted'].")</div></div>
             <p>".$row['review']."</p>
+	    <p>".$row['rating']." "//10"</p>
             </div>";
 	}
     }
