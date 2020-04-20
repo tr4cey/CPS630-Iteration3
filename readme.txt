@@ -1,7 +1,7 @@
 CPS630 Iteration 3 Documentation:
 By: Ryan Tracey, Jake Briltz, Zack Calderwood
 
-To access the website visit: rtracey.com 
+To access the website visit: rtracey.ca
 
 To run the code on your own set up a webserver to host
 the application, then navigate to "/CPS630-Iteration3/html/" 
